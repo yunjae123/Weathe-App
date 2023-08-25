@@ -32,9 +32,6 @@ def index():
     local_sunset_time = dt.datetime.utcfromtimestamp(response['sys']['sunset'] + response['timezone'])
     return render_template("index.html", city = city, fahrenheit_temp = fahrenheit_temp, celsius_temp = celsius_temp, humidity = humidity)
 
-
-
-
 if __name__ == "__main__":
     app.run(debug=True)
 
