@@ -11,5 +11,14 @@
         <input type="text" name="city" placeholder="Enter city">
         <button type="submit">Check Weather</button>
     </form>
+
+    <!-- Display error message if it exists -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <h2>Weather for {{ city }}!</h2>
+    <p>Temperature: {{ fahrenheit_temp }}°F ({{ celsius_temp }}°C)</p>
+    <p>Humidity: {{ humidity }}%</p>
 </body>
 </html>
