@@ -11,7 +11,7 @@ def k_ftemp(kelvin):
     return fahrenheit
 
 def k_ctemp(kelvin):
-    return kelvin - 273.15
+    return kelvin - 273.1
 
 
 url = BASE_URL + "appid=" + API_KEY + "&q=" + CITY
