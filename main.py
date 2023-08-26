@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
 API_KEY = os.environ.get("OPENWEATHER_API_KEY")
-DEFAULT_CITY = "Denver"
+DEFAULT_CITY = "denver"
 
 
 def k_ftemp(kelvin):
@@ -23,7 +23,8 @@ def k_ctemp(kelvin):
 def index():
     city = DEFAULT_CITY
     if request.method == "POST":
-        city = request.form.get("city") or city
+        city_input = request.form.get("city")
+        city = city_input.lower().capitalize() if city_input else DEFAULT_CITY.capitalize()
     url = BASE_URL + "appid=" + API_KEY + "&q=" + city
     response = requests.get(url)
 
