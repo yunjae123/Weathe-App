@@ -29,12 +29,16 @@ def index():
 
     if response.status_code == 200:
         data = response.json()
-        fahrenheit_temp = round(k_ftemp(data["main"]["temp"]))
-        celsius_temp = round(k_ctemp(data["main"]["temp"]))
-        humidity = data['main']['humidity']
-        local_sunrise_time = dt.datetime.utcfromtimestamp(data['sys']['sunrise'] + data['timezone'])
-        local_sunset_time = dt.datetime.utcfromtimestamp(data['sys']['sunset'] + data['timezone'])
-        return render_template("index.html", city = city, fahrenheit_temp = fahrenheit_temp, celsius_temp = celsius_temp, humidity = humidity)
+        temp =  data.get("main", {}).get("temp")
+        if temp:
+            fahrenheit_temp = round(k_ftemp(data["main"]["temp"]))
+            celsius_temp = round(k_ctemp(data["main"]["temp"]))
+            humidity = data['main']['humidity']
+            local_sunrise_time = dt.datetime.utcfromtimestamp(data['sys']['sunrise'] + data['timezone'])
+            local_sunset_time = dt.datetime.utcfromtimestamp(data['sys']['sunset'] + data['timezone'])
+            return render_template("index.html", city = city, fahrenheit_temp = fahrenheit_temp, celsius_temp = celsius_temp, humidity = humidity)
+        else:
+            return render_template("index.html", city=city, error="Temperature data is missing for this city.")
     
     elif response.status_code == 404:
         return render_template("index.html", city=city, error="City not found")
