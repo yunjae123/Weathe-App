@@ -1,11 +1,12 @@
 import datetime as dt
 import requests 
 from flask import Flask, render_template, request
+import os
 
 app = Flask(__name__)
 
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
-API_KEY = "a4243aa3498ba0bab7d3f32f82b18ef8"
+API_KEY = os.environ.get("OPENWEATHER_API_KEY")
 DEFAULT_CITY = "Denver"
 
 
