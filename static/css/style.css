@@ -1,0 +1,31 @@
+.temperature {
+    font-size: 24px;
+    font-weight: bold;
+    color:rgb(15, 151, 196)
+}
+
+.humidity {
+    font-size: 20px;
+    color: #228B22;
+}
+
+.wind-speed {
+    font-size: 20px;
+    color: #1E90FF;  
+}
+
+@media (min-width: 768px) {
+    .temperature {
+        font-size: 28px;
+    }
+
+    .humidity, .wind-speed {
+        font-size: 24px;
+    }
+}
+
+body {
+    padding: 20px;
+    margin: 0;
+    background: linear-gradient(to bottom, #cdd69c 0%, #df8ada 100%);
+}
