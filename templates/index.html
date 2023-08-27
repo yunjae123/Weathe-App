@@ -19,10 +19,10 @@
     {% endif %}
 
     <h2>Weather for {{ city }}!</h2>
-    <p>Temperature: {{ current_fahrenheit_temp }}°F ({{ current_celsius_temp }}°C)</p>
+    <p class="temperature">Temperature: {{ current_fahrenheit_temp }}°F ({{ current_celsius_temp }}°C)</p>
     <p>Max: {{ max_ftemp }}°F ({{ max_ctemp }}°C)  /  Min: {{ min_ftemp }}°F ({{ min_ctemp }}°C)</p>
-    <p>Wind Speed: {{ wind_speed }} m/s</p>
-    <p>Humidity: {{ humidity }}%</p>
+    <p class="wind-speed">Wind Speed: {{ wind_speed }} m/s</p>
+    <p class="humidity">Humidity: {{ humidity }}%</p>
     
 </body>
 </html>
