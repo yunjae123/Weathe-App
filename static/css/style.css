@@ -7,6 +7,9 @@
 .humidity {
     font-size: 20px;
     color: #228B22;
+    display: flex;
+    align-items: center;
+    gap: 50px;
 }
 
 .wind-speed {
@@ -31,13 +34,12 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0px;
-    background: linear-gradient(to bottom, #cdd69c 0%, #df8ada 100%);
+    background: rgb(39, 37, 37);
     font-family: 'Merriweather', serif;
 }
 
 .container {
     border: 1px solid blue;
     max-width: 800px;
-    width: 100%;
     padding: 20px;
 }
