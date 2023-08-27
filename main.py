@@ -32,6 +32,9 @@ def get_weather_data(data):
     visibility = data.get("visibility")
     local_sunrise_time = dt.datetime.utcfromtimestamp(data['sys']['sunrise'] + data['timezone'])
     local_sunset_time = dt.datetime.utcfromtimestamp(data['sys']['sunset'] + data['timezone'])
+    icon_code = data["weather"][0]["icon"]
+    icon_url = f"http://openweathermap.org/img/wn/{icon_code}@2x.png"
+
     return {
         "current_fahrenheit_temp": current_fahrenheit_temp,
         "current_celsius_temp": current_celsius_temp,
@@ -43,7 +46,8 @@ def get_weather_data(data):
         "wind_speed": wind_speed,
         "visibility": visibility,
         "local_sunrise_time": local_sunrise_time,
-        "local_sunset_time": local_sunset_time
+        "local_sunset_time": local_sunset_time,
+        "icon_url": icon_url
     }
 
 @app.route('/', methods=["GET", "POST"])
@@ -55,6 +59,7 @@ def index():
         city = city_input.lower().capitalize() if city_input else DEFAULT_CITY.capitalize()
     url = f"{BASE_URL}appid={API_KEY}&q={city}"
     response = requests.get(url)
+    print(response.json())
 
     if response.status_code == 200:
         data = response.json()
