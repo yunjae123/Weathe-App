@@ -2,6 +2,8 @@ import datetime as dt
 import requests 
 from flask import Flask, render_template, request
 import os
+# from dotenv import load_dotenv
+# load_dotenv()
 
 app = Flask(__name__)
 
@@ -51,7 +53,7 @@ def index():
     if request.method == "POST":
         city_input = request.form.get("city")
         city = city_input.lower().capitalize() if city_input else DEFAULT_CITY.capitalize()
-    url = BASE_URL + "appid=" + API_KEY + "&q=" + city
+    url = f"{BASE_URL}appid={API_KEY}&q={city}"
     response = requests.get(url)
 
     if response.status_code == 200:
