@@ -11,21 +11,22 @@
     <title>Weather App</title>
 </head>
 <body>
-    <form action="/" method="post">
-        <input type="text" name="city" placeholder="Enter city">
-        <button type="submit">Check Weather</button>
-    </form>
+    <div class="container">
+        <form action="/" method="post">
+            <input type="text" name="city" placeholder="Enter city">
+            <button type="submit">Check Weather</button>
+        </form>
 
-    <!-- Display error message if it exists -->
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+        <!-- Display error message if it exists -->
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
 
-    <h2>Weather for {{ city }}!</h2>
-    <p class="temperature">Temperature: {{ current_fahrenheit_temp }}°F ({{ current_celsius_temp }}°C)</p>
-    <p>Max: {{ max_ftemp }}°F ({{ max_ctemp }}°C)  /  Min: {{ min_ftemp }}°F ({{ min_ctemp }}°C)</p>
-    <p class="wind-speed">Wind Speed: {{ wind_speed }} m/s</p>
-    <p class="humidity">Humidity: {{ humidity }}%</p>
-    
+        <h2>Weather for {{ city }}!</h2>
+        <p class="temperature">Temperature: {{ current_fahrenheit_temp }}°F ({{ current_celsius_temp }}°C)</p>
+        <p>Max: {{ max_ftemp }}°F ({{ max_ctemp }}°C)  /  Min: {{ min_ftemp }}°F ({{ min_ctemp }}°C)</p>
+        <p class="wind-speed">Wind Speed: {{ wind_speed }} m/s</p>
+        <p class="humidity">Humidity: {{ humidity }}%</p>
+    </div>
 </body>
 </html>
