@@ -32,12 +32,7 @@ def index():
         data = response.json()
         temp =  data.get("main", {}).get("temp")
         if temp:
-            fahrenheit_temp = round(k_ftemp(data["main"]["temp"]))
-            celsius_temp = round(k_ctemp(data["main"]["temp"]))
-            humidity = data['main']['humidity']
-            local_sunrise_time = dt.datetime.utcfromtimestamp(data['sys']['sunrise'] + data['timezone'])
-            local_sunset_time = dt.datetime.utcfromtimestamp(data['sys']['sunset'] + data['timezone'])
-            return render_template("index.html", city = city, fahrenheit_temp = fahrenheit_temp, celsius_temp = celsius_temp, humidity = humidity)
+            return render_template("index.html", city = city)
         else:
             return render_template("index.html", city=city, error="Temperature data is missing for this city.")
     
@@ -50,11 +45,42 @@ def index():
 # if __name__ == "__main__":
 #     app.run(debug=True)
 
+
+
+
+def get_weather_data(data):
+    current_fahrenheit_temp = round(k_ftemp(data["main"]["temp"]))
+    current_celsius_temp = round(k_ctemp(data["main"]["temp"]))
+    max_ftemp = round(k_ftemp(data["main"]["temp_max"]))
+    min_ftemp = round(k_ftemp(data["main"]["temp_min"]))
+    max_ctemp = round(k_ctemp(data["main"]["temp_max"]))
+    min_ctemp = round(k_ctemp(data["main"]["temp_min"]))
+    humidity = data['main']['humidity']
+    wind_speed = data["wind"]["speed"]
+    visibility = data["visibility"]
+    local_sunrise_time = dt.datetime.utcfromtimestamp(data['sys']['sunrise'] + data['timezone'])
+    local_sunset_time = dt.datetime.utcfromtimestamp(data['sys']['sunset'] + data['timezone'])
+    return {
+        "current_fahrenheit_temp": current_fahrenheit_temp,
+        "current_celsius_temp": current_celsius_temp,
+        "max_ftemp": max_ftemp,
+        "min_ftemp": min_ftemp,
+        "max_ctemp": max_ctemp,
+        "min_ctemp": min_ctemp,
+        "humidity": humidity,
+        "wind_speed": wind_speed,
+        "visibility": visibility,
+        "local_sunrise_time": local_sunrise_time,
+        "local_sunset_time": local_sunset_time
+    }
+
+
 url = BASE_URL + "appid=" + API_KEY + "&q=" + "Denver"
 
 response = requests.get(url)
 data = response.json()
-print(data)
+
+print(get_weather_data(data))
 
 
 
