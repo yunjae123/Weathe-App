@@ -50,8 +50,11 @@ def index():
 # if __name__ == "__main__":
 #     app.run(debug=True)
 
+url = BASE_URL + "appid=" + API_KEY + "&q=" + "Denver"
 
-
+response = requests.get(url)
+data = response.json()
+print(data)
 
 
 
