@@ -18,7 +18,10 @@
     {% endif %}
 
     <h2>Weather for {{ city }}!</h2>
-    <p>Temperature: {{ fahrenheit_temp }}°F ({{ celsius_temp }}°C)</p>
+    <p>Temperature: {{ current_fahrenheit_temp }}°F ({{ current_celsius_temp }}°C)</p>
+    <p>Max: {{ max_ftemp }}°F ({{ max_ctemp }})°C</p>
+    <p>Min: {{ min_ftemp }}°F ({{ min_ctemp }})°C</p>
     <p>Humidity: {{ humidity }}%</p>
+    
 </body>
 </html>

@@ -18,36 +18,6 @@ def k_ftemp(kelvin):
 def k_ctemp(kelvin):
     return kelvin - 273.15
 
-@app.route('/', methods=["GET", "POST"])
-
-def index():
-    city = DEFAULT_CITY
-    if request.method == "POST":
-        city_input = request.form.get("city")
-        city = city_input.lower().capitalize() if city_input else DEFAULT_CITY.capitalize()
-    url = BASE_URL + "appid=" + API_KEY + "&q=" + city
-    response = requests.get(url)
-
-    if response.status_code == 200:
-        data = response.json()
-        temp =  data.get("main", {}).get("temp")
-        if temp:
-            return render_template("index.html", city = city)
-        else:
-            return render_template("index.html", city=city, error="Temperature data is missing for this city.")
-    
-    elif response.status_code == 404:
-        return render_template("index.html", city=city, error="City not found")
-    
-    else:
-        return render_template("index.html", city=city, error="An unexpected error occurred.")
-    
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
-
-
-
 def get_weather_data(data):
     current_fahrenheit_temp = round(k_ftemp(data["main"]["temp"]))
     current_celsius_temp = round(k_ctemp(data["main"]["temp"]))
@@ -55,9 +25,9 @@ def get_weather_data(data):
     min_ftemp = round(k_ftemp(data["main"]["temp_min"]))
     max_ctemp = round(k_ctemp(data["main"]["temp_max"]))
     min_ctemp = round(k_ctemp(data["main"]["temp_min"]))
-    humidity = data['main']['humidity']
-    wind_speed = data["wind"]["speed"]
-    visibility = data["visibility"]
+    humidity = data['main'].get("humidity")
+    wind_speed = data["wind"].get("wind_speed")
+    visibility = data.get("visibility")
     local_sunrise_time = dt.datetime.utcfromtimestamp(data['sys']['sunrise'] + data['timezone'])
     local_sunset_time = dt.datetime.utcfromtimestamp(data['sys']['sunset'] + data['timezone'])
     return {
@@ -74,13 +44,34 @@ def get_weather_data(data):
         "local_sunset_time": local_sunset_time
     }
 
+@app.route('/', methods=["GET", "POST"])
 
-url = BASE_URL + "appid=" + API_KEY + "&q=" + "Denver"
+def index():
+    city = DEFAULT_CITY
+    if request.method == "POST":
+        city_input = request.form.get("city")
+        city = city_input.lower().capitalize() if city_input else DEFAULT_CITY.capitalize()
+    url = BASE_URL + "appid=" + API_KEY + "&q=" + city
+    response = requests.get(url)
 
-response = requests.get(url)
-data = response.json()
+    if response.status_code == 200:
+        data = response.json()
+        temp =  data.get("main", {}).get("temp")
+        if temp:
+            weather_data = get_weather_data(data)
+            return render_template("index.html", city = city, **weather_data) 
+        else:
+            return render_template("index.html", city=city, error="Temperature data is missing for this city.")
+    
+    elif response.status_code == 404:
+        return render_template("index.html", city=city, error="City not found")
+    
+    else:
+        return render_template("index.html", city=city, error="An unexpected error occurred.")
+    
+if __name__ == "__main__":
+    app.run(debug=True)
 
-print(get_weather_data(data))
 
 
 
