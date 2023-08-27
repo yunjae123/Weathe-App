@@ -55,6 +55,7 @@ def index():
         city = city_input.lower().capitalize() if city_input else DEFAULT_CITY.capitalize()
     url = f"{BASE_URL}appid={API_KEY}&q={city}"
     response = requests.get(url)
+    print(response.json())
 
     if response.status_code == 200:
         data = response.json()
