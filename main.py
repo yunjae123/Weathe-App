@@ -26,7 +26,7 @@ def get_weather_data(data):
     max_ctemp = round(k_ctemp(data["main"]["temp_max"]))
     min_ctemp = round(k_ctemp(data["main"]["temp_min"]))
     humidity = data['main'].get("humidity")
-    wind_speed = data["wind"].get("wind_speed")
+    wind_speed = data["wind"].get("speed")
     visibility = data.get("visibility")
     local_sunrise_time = dt.datetime.utcfromtimestamp(data['sys']['sunrise'] + data['timezone'])
     local_sunset_time = dt.datetime.utcfromtimestamp(data['sys']['sunset'] + data['timezone'])
