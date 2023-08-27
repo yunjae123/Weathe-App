@@ -47,7 +47,7 @@ def get_weather_data(data):
 @app.route('/', methods=["GET", "POST"])
 
 def index():
-    city = DEFAULT_CITY
+    city = DEFAULT_CITY.capitalize()
     if request.method == "POST":
         city_input = request.form.get("city")
         city = city_input.lower().capitalize() if city_input else DEFAULT_CITY.capitalize()
