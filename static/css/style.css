@@ -1,45 +1,68 @@
-.temperature {
-    font-size: 24px;
-    font-weight: bold;
-    color:rgb(15, 151, 196)
-}
-
-.humidity {
-    font-size: 20px;
-    color: #228B22;
-    display: flex;
-    align-items: center;
-    gap: 50px;
-}
-
-.wind-speed {
-    font-size: 20px;
-    color: #1E90FF;  
-}
-
-@media (min-width: 768px) {
-    .temperature {
-        font-size: 28px;
-    }
-
-    .humidity, .wind-speed {
-        font-size: 24px;
-    }
-}
-
 body {
     padding: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0px;
-    background: rgb(39, 37, 37);
+    background-color: #E0E0E0;
     font-family: 'Merriweather', serif;
 }
 
 .container {
-    border: 1px solid blue;
-    max-width: 800px;
-    padding: 20px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    max-width: 500px;
+    margin: 5% auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.city {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.temperature {
+    font-size: 48px;
+    color: #1574B3;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.humidity, .wind-speed {
+    color: #555;
+}
+
+img {
+    width: 80px;
+    height: 80
+}
+
+form {
+    display: flex;
+    gap: 10px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    flex: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+button {
+    padding: 10px 20px;
+    background: #1574B3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+button:hover {
+    background: #125A90; 
 }

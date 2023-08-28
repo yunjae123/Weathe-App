@@ -22,13 +22,12 @@
             <p style="color: red;">{{ error }}</p>
         {% endif %}
 
-        <h2>Weather for {{ city }}!</h2>
-        <p class="temperature">Temperature: {{ current_fahrenheit_temp }}°F ({{ current_celsius_temp }}°C)</p>
+        <h2 class="city">{{ city }} <img src="{{ icon_url }}" alt="Weather Icon"></h2>
+        <p class="temperature">{{ current_fahrenheit_temp }}°F ({{ current_celsius_temp }}°C)</p>
         <p>Max: {{ max_ftemp }}°F ({{ max_ctemp }}°C)  /  Min: {{ min_ftemp }}°F ({{ min_ctemp }}°C)</p>
         <p class="wind-speed">Wind Speed: {{ wind_speed }} m/s</p>
         <p class="humidity">
             <span>Humidity: {{ humidity }}%</span>
-            <img src="{{ icon_url }}" alt="Weather Icon">
         </p>
     </div>
 </body>
